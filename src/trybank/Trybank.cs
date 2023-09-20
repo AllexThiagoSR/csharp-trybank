@@ -20,6 +20,14 @@ public class Trybank
         Bank = new int[maxAccounts, 4];
     }
 
+    private void IsThereLoggedUser()
+    {
+        if (!Logged)
+        {
+            throw new AccessViolationException("Usuário não está logado");
+        }
+    }
+
     // 1. Construa a funcionalidade de cadastrar novas contas
     public void RegisterAccount(int number, int agency, int pass)
     {
@@ -67,10 +75,7 @@ public class Trybank
     // 3. Construa a funcionalidade de fazer Logout
     public void Logout()
     {
-        if (!Logged)
-        {
-            throw new AccessViolationException("Usuário não está logado");
-        }
+        IsThereLoggedUser();   
         Logged = false;
         loggedUser = -99;
     }
@@ -78,7 +83,8 @@ public class Trybank
     // 4. Construa a funcionalidade de checar o saldo
     public int CheckBalance()
     {
-        throw new NotImplementedException();   
+        IsThereLoggedUser();
+        return Bank[loggedUser, 3];
     }
 
     // 5. Construa a funcionalidade de depositar dinheiro
