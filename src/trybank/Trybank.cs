@@ -28,6 +28,14 @@ public class Trybank
         }
     }
 
+    private void UserHasSufficientBalance(int value)
+    {
+        if (value > Bank[loggedUser, 3])
+        {
+            throw new InvalidOperationException("Saldo insuficiente");
+        }
+    }
+
     // 1. Construa a funcionalidade de cadastrar novas contas
     public void RegisterAccount(int number, int agency, int pass)
     {
@@ -97,7 +105,9 @@ public class Trybank
     // 6. Construa a funcionalidade de sacar dinheiro
     public void Withdraw(int value)
     {
-        throw new NotImplementedException();
+        IsThereLoggedUser();
+        UserHasSufficientBalance(value);
+        Bank[loggedUser, 3] -= value;
     }
 
     // 7. Construa a funcionalidade de transferir dinheiro entre contas
