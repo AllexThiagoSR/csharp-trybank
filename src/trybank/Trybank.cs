@@ -52,7 +52,7 @@ public class Trybank
                 {
                     loggedUser = i;
                     Logged = true;
-                    break;
+                    return;
                 }
                 else
                 {
