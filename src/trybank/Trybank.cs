@@ -90,7 +90,8 @@ public class Trybank
     // 5. Construa a funcionalidade de depositar dinheiro
     public void Deposit(int value)
     {
-        throw new NotImplementedException();
+        IsThereLoggedUser();
+        Bank[loggedUser, 3] += value;
     }
 
     // 6. Construa a funcionalidade de sacar dinheiro
